@@ -20,20 +20,20 @@ export function DayCard({ day, year = defaultYear, title, completed, stars }: Da
     <Link href={completed ? `/${year}/day/${day}` : "#"}>
       <div
         className={cn(
-          "day-card relative p-4 rounded-lg border transition-all",
+          "day-card relative p-3 sm:p-4 rounded-lg border transition-all",
           completed
             ? "bg-aoc-darker border-aoc-green/30 hover:border-aoc-gold/50 cursor-pointer"
             : "bg-aoc-darker/50 border-gray-800 opacity-50 cursor-not-allowed"
         )}
       >
         <div className="flex items-center justify-between mb-2">
-          <span className="text-2xl font-bold text-aoc-green">{dayStr}</span>
+          <span className="text-xl sm:text-2xl font-bold text-aoc-green">{dayStr}</span>
           <div className="flex gap-0.5">
             {[1, 2].map((starNum) => (
               <Star
                 key={starNum}
                 className={cn(
-                  "w-5 h-5",
+                  "w-4 h-4 sm:w-5 sm:h-5",
                   starNum <= stars
                     ? "fill-aoc-gold text-aoc-gold star-twinkle"
                     : "text-gray-700"

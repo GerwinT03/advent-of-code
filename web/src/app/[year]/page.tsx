@@ -78,7 +78,7 @@ export default async function YearPage({ params }: PageProps) {
         </div>
 
         {/* Calendar Grid */}
-        <div className="grid grid-cols-5 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {solutions.map((solution) => (
             <DayCard
               key={solution.day}
