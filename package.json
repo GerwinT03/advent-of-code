@@ -4,14 +4,12 @@
   "description": "Advent of Code 2025 Solutions",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "day": "tsx src/run.ts",
-    "test": "vitest"
+    "build": "bun run tsc",
+    "day": "bun run src/run.ts",
+    "test": "bun test"
   },
   "devDependencies": {
-    "@types/node": "^20.10.0",
-    "tsx": "^4.6.0",
-    "typescript": "^5.3.0",
-    "vitest": "^1.0.0"
+    "@types/bun": "latest",
+    "typescript": "^5.3.0"
   }
 }

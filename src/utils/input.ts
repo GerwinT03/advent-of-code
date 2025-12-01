@@ -11,7 +11,7 @@ function getFilename(filename?: string): string {
 
 /**
  * Reads the input file for a given day
- * @param day - Day number (1-25)
+ * @param day - Day number
  * @param filename - Optional filename, auto-detects based on --example flag
  */
 export function readInput(day: number, filename?: string): string {
