@@ -1,4 +1,5 @@
 import { readLines } from "../utils/input.js";
+import { runDay } from "../utils/runner.js";
 
 const input = readLines(1);
 
@@ -11,7 +12,7 @@ function part1(lines: string[]): number {
     if (rotation % 100 == 0) count++;
   })
   return count;
-};
+}
 
 function part2(lines: string[]): number {
   let rotation = 50;
@@ -29,7 +30,6 @@ function part2(lines: string[]): number {
     }
   })
   return count;
-};
+}
 
-console.log("Part 1:", part1(input));
-console.log("Part 2:", part2(input));
+export const solution = runDay({ day: 1, input, part1, part2 });
