@@ -1,0 +1,99 @@
+name: Benchmarks and Commit
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Comma/space-separated list of days to fetch (default: all present day folders)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 2025
+    env:
+      AOC_SESSION: ${{ secrets.AOC_SESSION }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Fetch inputs
+        run: |
+          set -euo pipefail
+          if [ -z "${AOC_SESSION:-}" ]; then
+            echo "AOC_SESSION is required to download inputs from adventofcode.com" >&2
+            exit 1
+          fi
+
+          # Determine which days to fetch: user input or all existing day folders.
+          if [ -n "${{ inputs.days }}" ]; then
+            DAYS=$(echo "${{ inputs.days }}" | tr ',' ' ')
+          else
+            DAYS=$(find src -maxdepth 1 -type d -name "day??" -printf "%f\n" | sed 's/day0*//')
+          fi
+
+          if [ "${DAYS}" = "all" ]; then
+            DAYS=$(find src -maxdepth 1 -type d -name "day??" -printf "%f\n" | sed 's/day0*//')
+          fi
+
+          echo "DAYS=${DAYS}" >> "$GITHUB_ENV"
+
+          fetch_day() {
+            local day="$1"
+            local padded
+            padded=$(printf "%02d" "$day")
+            mkdir -p "src/day${padded}"
+            curl -fsSL "https://adventofcode.com/2025/day/${day}/input" \
+              --cookie "session=${AOC_SESSION}" \
+              -o "src/day${padded}/input.txt"
+          }
+
+          for d in $DAYS; do
+            echo "Downloading input for day ${d}..."
+            fetch_day "$d"
+          done
+
+      - name: Run benchmarks
+        run: |
+          set -euo pipefail
+          if [ -z "${DAYS:-}" ]; then
+            DAYS=$(find src -maxdepth 1 -type d -name "day??" -printf "%f\n" | sed 's/day0*//')
+          fi
+
+          for d in $DAYS; do
+            echo "Running benchmark for day ${d}..."
+            bun run benchmark "$d"
+          done
+
+      - name: Commit and push results
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add src/day*/input.txt src/day*/meta.json || true
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore: update benchmarks"
+          git push
