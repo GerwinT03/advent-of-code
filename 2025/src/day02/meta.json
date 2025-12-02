@@ -1,4 +1,22 @@
 {
   "title": "Gift Shop",
-  "stars": 2
+  "stars": 2,
+  "performance": {
+    "part1": {
+      "mean": 245.2338,
+      "min": 239.411,
+      "max": 265.5017,
+      "median": 245.4354,
+      "runs": 100
+    },
+    "part2": {
+      "mean": 445.6794,
+      "min": 437.753,
+      "max": 466.5677,
+      "median": 444.9936,
+      "runs": 100
+    },
+    "benchmarkedAt": "2025-12-02T09:52:03.971Z",
+    "runtime": "bun 1.3.3"
+  }
 }
