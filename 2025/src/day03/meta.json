@@ -18,5 +18,14 @@
     },
     "benchmarkedAt": "2025-12-03T08:38:39.264Z",
     "runtime": "bun 1.3.3"
-  }
+  },
+  "visualizations": [
+    {
+      "id": "greedy-pick",
+      "title": "Part 2 visualization",
+      "description": "Shows the positions chosen for the 12-digit number in part 2.",
+      "file": "visuals/greedy-pick.json",
+      "format": "grid-frames"
+    }
+  ]
 }

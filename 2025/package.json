@@ -8,6 +8,7 @@
     "day": "bun run src/run.ts",
     "generate": "bun run src/generate.ts",
     "benchmark": "bun run src/benchmark.ts",
+    "visualize": "bun run src/visualize.ts",
     "test": "bun test"
   },
   "devDependencies": {

@@ -7,6 +7,7 @@ import { getSolution, getSolutions } from "@/lib/solutions";
 import { ArrowLeft, ArrowRight, Star, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getYearConfig, getAvailableYears } from "@/lib/config";
+import { VisualizationPlayer } from "@/components/VisualizationPlayer";
 
 interface PageProps {
   params: Promise<{ year: string; day: string }>;
@@ -133,6 +134,21 @@ export default async function DayPage({ params }: PageProps) {
         {solution.performance && (
           <div className="mb-8">
             <PerformanceSection performance={solution.performance} />
+          </div>
+        )}
+
+        {/* Visualizations */}
+        {solution.visualizations.length > 0 && (
+          <div className="mb-8 space-y-4">
+            <h2 className="text-lg font-semibold text-white">Visualizations</h2>
+            {solution.visualizations.map((viz) => (
+              <VisualizationPlayer
+                key={viz.id}
+                year={year}
+                day={dayNum}
+                visualization={viz}
+              />
+            ))}
           </div>
         )}
 

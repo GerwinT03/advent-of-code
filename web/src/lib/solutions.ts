@@ -17,10 +17,19 @@ export interface PerformanceData {
   runtime: string;
 }
 
+export interface VisualizationMeta {
+  id: string;
+  file: string;
+  title?: string;
+  description?: string;
+  format?: string;
+}
+
 export interface DayMetadata {
   title: string;
   stars?: number;
   performance?: PerformanceData;
+  visualizations?: VisualizationMeta[];
 }
 
 export interface DaySolution {
@@ -31,6 +40,7 @@ export interface DaySolution {
   stars: number; // 0, 1, or 2
   metadata: DayMetadata | null;
   performance: PerformanceData | null;
+  visualizations: VisualizationMeta[];
 }
 
 function readMetadata(metaPath: string): DayMetadata | null {
@@ -93,6 +103,7 @@ export function getSolutions(year: number = defaultYear): DaySolution[] {
       stars,
       metadata,
       performance: metadata?.performance ?? null,
+      visualizations: metadata?.visualizations ?? [],
     });
   }
 

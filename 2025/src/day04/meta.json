@@ -18,5 +18,14 @@
     },
     "benchmarkedAt": "2025-12-04T08:39:41.655Z",
     "runtime": "bun 1.3.3"
-  }
+  },
+  "visualizations": [
+    {
+      "id": "grid-fill",
+      "title": "Part 2 visualization",
+      "description": "Shows how the paper rolls are removed step by step.",
+      "file": "visuals/grid-fill.json",
+      "format": "grid-frames"
+    }
+  ]
 }
