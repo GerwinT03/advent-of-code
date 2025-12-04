@@ -2,6 +2,8 @@
   "name": "aoc-2025-web",
   "version": "0.1.0",
   "private": true,
+  "author": "GerwinT",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

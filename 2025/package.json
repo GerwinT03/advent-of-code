@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Advent of Code 2025 Solutions",
   "type": "module",
+  "author": "GerwinT",
+  "license": "MIT",
   "scripts": {
     "build": "bun run tsc",
     "day": "bun run src/run.ts",
