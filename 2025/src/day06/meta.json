@@ -1,4 +1,22 @@
 {
   "title": "Trash Compactor",
-  "stars": 2
+  "stars": 2,
+  "performance": {
+    "part1": {
+      "mean": 0.9717,
+      "min": 0.7748,
+      "max": 2.3289,
+      "median": 0.8074,
+      "runs": 100
+    },
+    "part2": {
+      "mean": 0.8931,
+      "min": 0.6648,
+      "max": 2.1607,
+      "median": 0.7011,
+      "runs": 100
+    },
+    "benchmarkedAt": "2025-12-06T10:41:28.738Z",
+    "runtime": "bun 1.3.3"
+  }
 }
