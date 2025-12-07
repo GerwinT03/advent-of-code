@@ -36,13 +36,28 @@ function formatTime(ms: number): string {
   }
 }
 
+function deepCopy<T>(input: T): T {
+  if (Array.isArray(input)) {
+    return input.map((item) => deepCopy(item)) as T;
+  }
+  if (input !== null && typeof input === "object") {
+    const copy = {} as T;
+    for (const key in input) {
+      copy[key] = deepCopy(input[key]);
+    }
+    return copy;
+  }
+  return input;
+}
+
 function runPart<T>(
   name: string,
   fn: SolutionFn<T>,
-  input: T
+  input: T,
 ): { result: unknown; time: number } {
+  const inputCopy = deepCopy(input);
   const start = performance.now();
-  const result = fn(input);
+  const result = fn(inputCopy);
   const time = performance.now() - start;
   return { result, time };
 }
