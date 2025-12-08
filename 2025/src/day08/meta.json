@@ -18,5 +18,14 @@
     },
     "benchmarkedAt": "2025-12-08T09:18:00.560Z",
     "runtime": "bun 1.3.4"
-  }
+  },
+  "visualizations": [
+    {
+      "id": "graph-connections",
+      "title": "Union-Find Connections",
+      "description": "Shows boxes being connected by shortest distance using Union-Find algorithm.",
+      "file": "visuals/graph-connections.json",
+      "format": "graph-frames"
+    }
+  ]
 }

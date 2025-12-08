@@ -40,7 +40,7 @@ function getPerformanceBgColor(ms: number): string {
 function StatCard({ label, value, icon: Icon, subtext }: { 
   label: string; 
   value: string; 
-  icon: React.ElementType;
+  icon: React.ComponentType<{ className?: string }>;
   subtext?: string;
 }) {
   return (
