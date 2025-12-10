@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,12 +14,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <script
-        defer
-        src="https://umami.gerwint.live/script.js"
-        data-website-id="4bc5a865-6b82-46f5-bb4e-c68eaa4d575e"
-      ></script>
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        <Script
+          src="https://umami.gerwint.live/script.js"
+          data-website-id="4bc5a865-6b82-46f5-bb4e-c68eaa4d575e"
+          strategy="afterInteractive"
+        />
+        {children}
+      </body>
     </html>
   );
 }
