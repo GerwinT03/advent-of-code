@@ -53,7 +53,12 @@ jobs:
             DAYS=$(find src -maxdepth 1 -type d -name "day??" -printf "%f\n" | sed 's/day0*//')
           fi
 
-          echo "DAYS=${DAYS}" >> "$GITHUB_ENV"
+          # Save DAYS as a multi-line value for GitHub ENV
+          {
+            echo "DAYS<<EOF"
+            echo "${DAYS}"
+            echo "EOF"
+          } >> "$GITHUB_ENV"
 
           fetch_day() {
             local day="$1"
